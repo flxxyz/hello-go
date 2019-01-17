@@ -22,5 +22,9 @@ func main() {
 		Db:     0,
 	}
 	_ = NewConfig("conf.json", data)
+
 	select {}
+
+	//end := make(chan bool, 1)
+	//<-end
 }
