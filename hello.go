@@ -1,6 +1,8 @@
 package main
 
 import "fmt"
+
 func main() {
-    fmt.Println("fuck world")
+	str := "fuck"
+	fmt.Println(str, "world")
 }
