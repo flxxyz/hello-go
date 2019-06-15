@@ -31,38 +31,38 @@ func (c *core) Request(method string, url string, body []byte) (rw *httptest.Res
 	return
 }
 
-func (c *core) GET(method string, url string, body []byte) (rw *httptest.ResponseRecorder) {
-	return c.Request(method, url, body)
+func (c *core) GET(url string, body []byte) (rw *httptest.ResponseRecorder) {
+	return c.Request(http.MethodGet, url, body)
 }
 
-func (c *core) POST(method string, url string, body []byte) (rw *httptest.ResponseRecorder) {
-	return c.Request(method, url, body)
+func (c *core) POST(url string, body []byte) (rw *httptest.ResponseRecorder) {
+	return c.Request(http.MethodPost, url, body)
 }
 
-func (c *core) PUT(method string, url string, body []byte) (rw *httptest.ResponseRecorder) {
-	return c.Request(method, url, body)
+func (c *core) PUT(url string, body []byte) (rw *httptest.ResponseRecorder) {
+	return c.Request(http.MethodPut, url, body)
 }
 
-func (c *core) OPTION(method string, url string, body []byte) (rw *httptest.ResponseRecorder) {
-	return c.Request(method, url, body)
+func (c *core) OPTIONS(url string, body []byte) (rw *httptest.ResponseRecorder) {
+	return c.Request(http.MethodOptions, url, body)
 }
 
-func (c *core) DELETE(method string, url string, body []byte) (rw *httptest.ResponseRecorder) {
-	return c.Request(method, url, body)
+func (c *core) DELETE(url string, body []byte) (rw *httptest.ResponseRecorder) {
+	return c.Request(http.MethodDelete, url, body)
 }
 
-func (c *core) HAED(method string, url string, body []byte) (rw *httptest.ResponseRecorder) {
-	return c.Request(method, url, body)
+func (c *core) HAED(url string, body []byte) (rw *httptest.ResponseRecorder) {
+	return c.Request(http.MethodHead, url, body)
 }
 
-func (c *core) PATCH(method string, url string, body []byte) (rw *httptest.ResponseRecorder) {
-	return c.Request(method, url, body)
+func (c *core) PATCH(url string, body []byte) (rw *httptest.ResponseRecorder) {
+	return c.Request(http.MethodPatch, url, body)
 }
 
-func (c *core) CONNECT(method string, url string, body []byte) (rw *httptest.ResponseRecorder) {
-	return c.Request(method, url, body)
+func (c *core) CONNECT(url string, body []byte) (rw *httptest.ResponseRecorder) {
+	return c.Request(http.MethodConnect, url, body)
 }
 
-func (c *core) TRACE(method string, url string, body []byte) (rw *httptest.ResponseRecorder) {
-	return c.Request(method, url, body)
+func (c *core) TRACE(url string, body []byte) (rw *httptest.ResponseRecorder) {
+	return c.Request(http.MethodTrace, url, body)
 }
