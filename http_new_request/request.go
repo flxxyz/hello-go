@@ -2,7 +2,6 @@ package http_new_request
 
 import (
 	"bytes"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 )
@@ -17,8 +16,6 @@ func New(router http.Handler) *core {
 }
 
 func (c *core) Request(method string, url string, body []byte) (rw *httptest.ResponseRecorder) {
-	fmt.Println("请求路径: ", url)
-
 	reader := bytes.NewReader(body)
 	req, _ := http.NewRequest(method, url, reader)
 	if c.onUa {
