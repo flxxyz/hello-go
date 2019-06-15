@@ -1,4 +1,4 @@
-package main
+package conf_hot_reload
 
 import (
 	"encoding/json"
@@ -20,8 +20,8 @@ type Config struct {
 func NewConfig(filename string, data interface{}) *Config {
 	conf := &Config{
 		Filename: filename,
-		Data: data,
-		Lock: &sync.RWMutex{},
+		Data:     data,
+		Lock:     &sync.RWMutex{},
 	}
 
 	conf.parse()

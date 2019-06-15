@@ -1,12 +1,11 @@
-package main
+package conf_hot_reload_test
 
 import (
-	"log"
+	"github.com/flxxyz/hello-go/conf_hot_reload"
+	"testing"
 )
 
-func main() {
-	log.Println("开始运行...")
-
+func TestRun(t *testing.T) {
 	//json配置文件结构体
 	type Content struct {
 		Host   string `json:"host"`
@@ -21,7 +20,7 @@ func main() {
 		Passwd: "",
 		Db:     0,
 	}
-	_ = NewConfig("conf.json", data)
+	_ = conf_hot_reload.NewConfig("conf.json", data)
 
 	select {}
 
