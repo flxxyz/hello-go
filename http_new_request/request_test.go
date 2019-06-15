@@ -7,15 +7,15 @@ import (
 	"testing"
 )
 
-func TestCore_Request(t *testing.T) {
-	router := gin.Default()
+type route struct {
+	Method   string
+	Path     string
+	Body     []byte
+	Response string
+}
 
-	type route struct {
-		Method   string
-		Path     string
-		Body     []byte
-		Response string
-	}
+func basic(router *gin.Engine, t *testing.T) (routes []route) {
+	routes = make([]route, 0)
 
 	methods := []string{
 		http.MethodGet,
@@ -28,8 +28,6 @@ func TestCore_Request(t *testing.T) {
 		http.MethodConnect,
 		http.MethodTrace,
 	}
-
-	routes := make([]route, 0)
 
 	for _, method := range methods {
 		routes = append(routes, route{
@@ -52,10 +50,54 @@ func TestCore_Request(t *testing.T) {
 		}(r)
 	}
 
+	return
+}
+
+func TestCore_Request(t *testing.T) {
+	gin.SetMode(gin.ReleaseMode)
+	router := gin.Default()
+
+	routes := basic(router, t)
+
 	hnr := http_new_request.New(router)
 	for _, r := range routes {
 		response := hnr.Request(r.Method, r.Path, r.Body)
 
 		t.Logf("source response: %s, request() response: %s", r.Response, response.Body.String())
 	}
+}
+
+func TestSingleRequest(t *testing.T) {
+	gin.SetMode(gin.ReleaseMode)
+	router := gin.Default()
+
+	_ = basic(router, t)
+
+	hnr := http_new_request.New(router)
+	res := hnr.GET("/test", nil)
+	t.Logf("response: %s", res.Body.String())
+
+	hnr.POST("/test", nil)
+	t.Logf("response: %s", res.Body.String())
+
+	hnr.PUT("/test", nil)
+	t.Logf("response: %s", res.Body.String())
+
+	hnr.PATCH("/test", nil)
+	t.Logf("response: %s", res.Body.String())
+
+	hnr.OPTIONS("/test", nil)
+	t.Logf("response: %s", res.Body.String())
+
+	hnr.HAED("/test", nil)
+	t.Logf("response: %s", res.Body.String())
+
+	hnr.DELETE("/test", nil)
+	t.Logf("response: %s", res.Body.String())
+
+	hnr.CONNECT("/test", nil)
+	t.Logf("response: %s", res.Body.String())
+
+	hnr.TRACE("/test", nil)
+	t.Logf("response: %s", res.Body.String())
 }
