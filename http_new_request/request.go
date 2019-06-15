@@ -16,7 +16,7 @@ func New(router http.Handler) *core {
 	return &core{router, true}
 }
 
-func (c *core) Request(method string, url string, body []byte) (rw http.ResponseWriter) {
+func (c *core) Request(method string, url string, body []byte) (rw *httptest.ResponseRecorder) {
 	fmt.Println("请求路径: ", url)
 
 	reader := bytes.NewReader(body)
