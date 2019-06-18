@@ -1,6 +1,9 @@
 package hash
 
-import "testing"
+import (
+	"github.com/flxxyz/hello-go/hash"
+	"testing"
+)
 
 func TestSHA1(t *testing.T) {
 	t.Log(SHA1("0"))
