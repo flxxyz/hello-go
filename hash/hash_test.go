@@ -14,11 +14,14 @@ func TestSHA512(t *testing.T) {
 }
 
 func TestMD5(t *testing.T) {
-	t.Log(MD5("0"), MD5("1"), MD5("2"), MD5("3"))
+	t.Log(MD5("0"))
 }
 
 func TestHMAC(t *testing.T) {
-	t.Log(HMAC("123456", "0"))
+	t.Log(HMAC("md5", "123456", "0"))
+	t.Log(HMAC("sha1", "123456", "0"))
+	t.Log(HMAC("sha256", "123456", "0"))
+	t.Log(HMAC("sha512", "123456", "0"))
 }
 
 func TestBase64Encode(t *testing.T) {
